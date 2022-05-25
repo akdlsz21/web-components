@@ -1,37 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Web Components</title>
-    <style>
-      #info-box {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <button>Show</button>
-    <p id="info-box">More infos!</p>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Web Components</title>
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+			}
+		</style>
 
-    <script>
-      const button = document.querySelector('button');
-      const infoEl = document.querySelector('p');
+		<script src="hide-button.js"></script>
+	</head>
 
-      let isHidden = true;
+	<!-- <body>
 
-      button.addEventListener('click', () => {
-        if (isHidden) {
-          infoEl.style.display = 'block';
-          button.textContent = 'Hide';
-          isHidden = false;
-        } else {
-          infoEl.style.display = 'none';
-          button.textContent = 'Show';
-          isHidden = true;
-        }
-      });
-    </script>
-  </body>
+		<button>Show</button>
+		<p id="info-box">More infos!</p>
+
+		<script>
+			const button = document.querySelector('button');
+			const infoEl = document.querySelector('p');
+
+			let isHidden = true;
+
+			button.addEventListener('click', () => {
+				if (isHidden) {
+					infoEl.style.display = 'block';
+					button.textContent = 'Hide';
+					isHidden = false;
+				} else {
+					infoEl.style.display = 'none';
+					button.textContent = 'Show';
+					isHidden = true;
+				}
+			});
+		</script>
+	</body> -->
+
+	<body>
+		<ak-hide-button text="More Info! text Attribute"
+			>custom slots</ak-hide-button
+		>
+		<ak-hide-button hide text="More Info! text Attribute"></ak-hide-button>
+	</body>
 </html>

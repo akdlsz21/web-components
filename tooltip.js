@@ -4,7 +4,6 @@ class Tooltip extends HTMLElement {
 		this._tooltipContainer;
 		this._tooltipText = 'dummy text';
 		this.attachShadow({ mode: 'open' });
-		const template = document.querySelector('#tooltip-template');
 		this.shadowRoot.innerHTML = `
 			<style>
 				div{
