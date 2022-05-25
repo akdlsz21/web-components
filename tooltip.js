@@ -4,6 +4,20 @@ class Tooltip extends HTMLElement {
 		this._tooltipContainer;
 		this._tooltipText = 'dummy text';
 		this.attachShadow({ mode: 'open' });
+		const template = document.querySelector('#tooltip-template');
+		this.shadowRoot.innerHTML = `
+			<style>
+				div{
+					border: 1px solid orange;
+					background-color: black;
+					position: absolute;
+					color: white;
+					z-index: 10;
+				}
+			</style>
+			<span> [ ? ] </span>
+			<slot> Default slot text </slot>
+		`;
 	}
 
 	connectedCallback() {
@@ -11,8 +25,7 @@ class Tooltip extends HTMLElement {
 		if (this.hasAttribute('text'))
 			this._tooltipText = this.getAttribute('text');
 
-		const tooltipIcon = document.createElement('span');
-		tooltipIcon.textContent = ' (?) ';
+		const tooltipIcon = this.shadowRoot.querySelector('span');
 
 		tooltipIcon.addEventListener('mouseenter', this._showTooltip.bind(this));
 		tooltipIcon.addEventListener('mouseleave', this._hideTooltip.bind(this));
@@ -27,10 +40,6 @@ class Tooltip extends HTMLElement {
 
 		this._tooltipContainer = document.createElement('div');
 		this._tooltipContainer.textContent = this._tooltipText;
-		this._tooltipContainer.style.backgroundColor = '#333';
-		this._tooltipContainer.style.color = 'white';
-		this._tooltipContainer.style.position = 'absolute';
-		this._tooltipContainer.style.zIndex = '10';
 		this.shadowRoot.appendChild(this._tooltipContainer);
 	}
 
